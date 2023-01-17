@@ -1,0 +1,27 @@
+import {combineReducers, configureStore} from '@reduxjs/toolkit'
+import { articleReducer } from './slices'
+
+
+const rootReducer = combineReducers({
+    articleReducer
+})
+
+const setupStore = () => configureStore({
+    reducer: rootReducer,
+})
+
+
+type RootState = ReturnType<typeof rootReducer>
+type AppStore = ReturnType<typeof setupStore>
+
+type AppDispatch = AppStore['dispatch']
+
+export {
+    setupStore
+}
+
+export type {
+    RootState,
+    AppStore,
+    AppDispatch
+}
