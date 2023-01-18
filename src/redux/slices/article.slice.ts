@@ -27,6 +27,20 @@ const getAllArticle = createAsyncThunk<IArticle[], void>(
     }
 )
 
+const searchArticles = createAsyncThunk<IArticle[], void>(
+    'articleSlice/searchAtricles',
+    async (value, {rejectWithValue}) => {
+        try {
+            const {data} = await articleService.searchArticles(value)
+            return data
+        } catch (e) {
+            const err = e as AxiosError
+            return rejectWithValue(err.response?.data)
+        }
+    }
+)
+
+
 const articleSlice = createSlice({
     name: 'articleSlice',
     initialState,
@@ -37,17 +51,21 @@ const articleSlice = createSlice({
     },
     extraReducers: builder =>
         builder
-            .addCase(getAllArticle.fulfilled, (state, action)=>{
+            .addCase(getAllArticle.fulfilled, (state, action) => {
+                state.articles = action.payload
+            })
+            .addCase(searchArticles.fulfilled, (state, action) => {
                 state.articles = action.payload
             })
 
 })
 
-const {reducer: articleReducer, actions:{selectArticle}} = articleSlice
+const {reducer: articleReducer, actions: {selectArticle}} = articleSlice
 
 const articleActions = {
     getAllArticle,
-    selectArticle
+    selectArticle,
+    searchArticles
 }
 
 export {articleActions, articleReducer}
