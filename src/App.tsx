@@ -2,7 +2,6 @@ import React, {FC} from 'react';
 import './App.css';
 import {Route, Routes} from "react-router-dom";
 
-
 import { ArticlePage,ArticleDetailPage } from './page';
 
 

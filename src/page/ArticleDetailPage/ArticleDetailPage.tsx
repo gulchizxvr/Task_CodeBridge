@@ -6,10 +6,11 @@ import './stylist.scss'
 
 const ArticleDetailPage: FC = () => {
 
+    const navigate = useNavigate()
+
     const {currentArticle} = useAppSelector(state => state.articleReducer)
 
-    const navigate = useNavigate()
-    const goBack = ()=>{
+    const goBack = ():void =>{
         navigate(-1)
     }
 

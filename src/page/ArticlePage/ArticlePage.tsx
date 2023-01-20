@@ -10,7 +10,7 @@ import './style.articlepage.scss'
 
 const ArticlePage: FC = () => {
 
-    const {articles} = useAppSelector(state => state.articleReducer)
+    const {articles, loading} = useAppSelector(state => state.articleReducer)
     const dispatch = useAppDispatch()
 
 
@@ -22,22 +22,28 @@ const ArticlePage: FC = () => {
 
     useEffect(() => {
         if (!contains) {
-            dispatch(articleActions.getAllArticle())
+                dispatch(articleActions.getAllArticle())
         } else {
             // @ts-ignore
             dispatch(articleActions.searchArticles(contains))
         }
     }, [query, dispatch])
 
+    const countResults = articles.length
+
     return (
         <div className="wrap">
             <Search/>
-            <h4 style={{fontFamily:"Montserrat"}}>Result</h4>
+            {(!loading) && (<h4 style={{fontFamily: "Montserrat"}}>Results:{countResults}</h4>)}
             <hr/>
 
-            <div className="cardsList">
-                {articles && articles.map(article => <ArticleCard article={article}/>)}
-            </div>
+            {(!loading) ?
+                (<div className="cardsList">
+                    {articles && articles.map(article => <ArticleCard article={article}/>)}
+                </div>) :
+                (<div className='loadingScreen'><h3>Loading...</h3></div>)
+
+            }
 
         </div>
     );

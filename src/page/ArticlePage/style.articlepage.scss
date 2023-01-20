@@ -1,12 +1,11 @@
-
 $font-family: "Montserrat";
-
 
 
 body {
   margin: 0 auto;
   width: 100vw;
   box-sizing: border-box;
+
   .wrap {
 
     padding: 50px 75px;
@@ -17,15 +16,30 @@ body {
       margin-top: 40px;
       margin-bottom: 0;
     }
+
     hr {
       margin: 5px 0 10px;
       border: 1px solid #E5E5E5;
     }
-    .cardsList{
+
+    .cardsList {
       display: flex;
       flex-flow: row wrap;
       gap: 45px;
 
+    }
+
+    .loadingScreen {
+      height: 70vh;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      h3 {
+        font-size: 80px;
+        font-family: "Montserrat";
+      }
     }
   }
 }

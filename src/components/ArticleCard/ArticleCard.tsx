@@ -7,7 +7,6 @@ import "./articleCard.style.scss"
 import "@fontsource/montserrat";
 
 import moment from "moment";
-
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 
 interface IProps {

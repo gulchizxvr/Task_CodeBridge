@@ -2,17 +2,18 @@ import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 
 import {articleService} from "../../service";
 import {AxiosError} from "axios";
-import {ReactNode} from "react";
-import { IArticle } from "../../interface/response.interface";
+import {IArticle} from "../../interface/response.interface";
 
 interface IState {
     articles: IArticle[]
     currentArticle: IArticle | null
+    loading: boolean
 }
 
 const initialState: IState = {
     articles: [],
-    currentArticle: null
+    currentArticle: null,
+    loading: false
 }
 
 
@@ -58,9 +59,20 @@ const articleSlice = createSlice({
         builder
             .addCase(getAllArticle.fulfilled, (state, action) => {
                 state.articles = action.payload
+                state.loading = false
             })
+            .addCase(getAllArticle.pending, (state) => {
+                state.loading = true
+            })
+
+
+
             .addCase(searchArticles.fulfilled, (state, action) => {
                 state.articles = action.payload
+                state.loading = false
+            })
+            .addCase(searchArticles.pending, (state) => {
+                state.loading = true
             })
 
 })
