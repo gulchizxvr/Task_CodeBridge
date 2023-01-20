@@ -29,6 +29,12 @@ const Search: FC = () => {
     }
 
 
+    const onKeyDown = (event: React.KeyboardEvent<HTMLDivElement>): void => {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            submit()
+        }
+    }
 
 
     return (
@@ -52,8 +58,10 @@ const Search: FC = () => {
                 defaultValue=""
                 placeholder='Write....'
                 onChange={changeValue}
+                onKeyDown={onKeyDown}
             />
             {/*<Button onClick={submit}>search</Button>*/}
+
         </div>
     );
 };
