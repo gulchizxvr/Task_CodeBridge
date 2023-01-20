@@ -1,8 +1,20 @@
 export interface IArticle {
-    id: number
-    title: string,
-    url: string,
-    imageUrl: string,
-    summary: string,
-    publishedAt: Date,
+    status: string
+    totalResults: number
+    articles: [
+        {
+            source: {
+                id: string,
+                name: string
+            }
+            author: string | null
+            title: string
+            url: string
+            urlToImage: string
+            publishedAt: Date
+            content: string
+        }]
 }
+
+
+

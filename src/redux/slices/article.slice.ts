@@ -1,7 +1,9 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
-import {IArticle} from "../../interface/response.interface";
+
 import {articleService} from "../../service";
 import {AxiosError} from "axios";
+import {ReactNode} from "react";
+import { IArticle } from "../../interface/response.interface";
 
 interface IState {
     articles: IArticle[]
@@ -19,7 +21,10 @@ const getAllArticle = createAsyncThunk<IArticle[], void>(
     async (_, {rejectWithValue}) => {
         try {
             const {data} = await articleService.getAllArticle()
-            return data
+            console.log(data);
+            const directory = data.articles
+            console.log(directory);
+            return directory
         } catch (e) {
             const err = e as AxiosError
             return rejectWithValue(err.response?.data)
@@ -28,11 +33,11 @@ const getAllArticle = createAsyncThunk<IArticle[], void>(
 )
 
 const searchArticles = createAsyncThunk<IArticle[], void>(
-    'articleSlice/searchAtricles',
+    'articleSlice/searchArticles',
     async (value, {rejectWithValue}) => {
         try {
             const {data} = await articleService.searchArticles(value)
-            return data
+            return data.articles
         } catch (e) {
             const err = e as AxiosError
             return rejectWithValue(err.response?.data)

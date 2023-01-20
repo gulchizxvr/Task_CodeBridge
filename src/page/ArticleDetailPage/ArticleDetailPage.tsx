@@ -1,8 +1,7 @@
 import React, {FC} from 'react';
 
 import {useAppSelector} from "../../hooks";
-
-
+import './stylist.scss'
 
 const ArticleDetailPage:FC = () => {
 
@@ -11,6 +10,8 @@ const ArticleDetailPage:FC = () => {
     return (
         <div>
             <h1>{currentArticle?.title}</h1>
+            <p>{currentArticle?.description}</p>
+
         </div>
     );
 };

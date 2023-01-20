@@ -6,6 +6,8 @@ import {ArticleCard} from "../../components/ArticleCard/ArticleCard";
 import {Search} from "../../components/Search/Search";
 import {useSearchParams} from 'react-router-dom';
 
+import './style.articlepage.scss'
+
 const ArticlePage: FC = () => {
 
     const {articles} = useAppSelector(state => state.articleReducer)
@@ -14,21 +16,29 @@ const ArticlePage: FC = () => {
 
     const [query, setQuery] = useSearchParams()
 
-    let contains = query.get('contains')
 
+    let contains = query.get('contains')
+    console.log(contains);
 
     useEffect(() => {
-        if (contains) {
+        if (!contains) {
             dispatch(articleActions.getAllArticle())
         } else {
-            dispatch(articleActions.getAllArticle())
+            // @ts-ignore
+            dispatch(articleActions.searchArticles(contains))
         }
-    }, [dispatch])
+    }, [query, dispatch])
 
     return (
-        <div>
+        <div className="wrap">
             <Search/>
-            {articles ? articles.map(article => <ArticleCard article={article}/>) : null}
+            <h4 style={{fontFamily:"Montserrat"}}>Result</h4>
+            <hr/>
+
+            <div className="cardsList">
+                {articles && articles.map(article => <ArticleCard article={article}/>)}
+            </div>
+
         </div>
     );
 };

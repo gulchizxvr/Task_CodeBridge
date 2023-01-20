@@ -1,0 +1,31 @@
+
+$font-family: "Montserrat";
+
+
+
+body {
+  margin: 0 auto;
+  width: 100vw;
+  box-sizing: border-box;
+  .wrap {
+    background: rgba(229, 229, 229, 0.62);
+    padding: 50px 75px;
+    min-height: 100vh;
+
+
+    h4 {
+      margin-top: 40px;
+      margin-bottom: 0;
+    }
+    hr {
+      margin: 5px 0 10px;
+      border: 1px solid #E5E5E5;
+    }
+    .cardsList{
+      display: flex;
+      flex-flow: row wrap;
+      gap: 45px;
+
+    }
+  }
+}
