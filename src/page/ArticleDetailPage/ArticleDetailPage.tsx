@@ -1,27 +1,31 @@
 import React, {FC} from 'react';
 import {useNavigate} from 'react-router-dom';
 
-import {useAppSelector} from "../../hooks";
 import './stylist.scss'
 
 const ArticleDetailPage: FC = () => {
 
     const navigate = useNavigate()
 
-    const {currentArticle} = useAppSelector(state => state.articleReducer)
+    const currentArticle = window.localStorage.getItem("description")
+
+
+    const {urlToImage, title, content} = JSON.parse(currentArticle)
+
 
     const goBack = ():void =>{
         navigate(-1)
+        window.localStorage.removeItem("description")
     }
 
     return (
         <div className="container">
-            <img src={currentArticle?.urlToImage} alt=""/>
+            <img src={urlToImage} alt={title}/>
 
             <div className='changePosition'>
                 <div className="allText">
-                    <h1>{currentArticle?.title}</h1>
-                    <p>{currentArticle?.content} <br/><br/> Lorem ipsum dolor sit amet, consectetur adipisicing elit. A
+                    <h1>{title}</h1>
+                    <p>{content} <br/><br/> Lorem ipsum dolor sit amet, consectetur adipisicing elit. A
                         ab amet
                         asperiores, assumenda dicta ea eligendi eos error esse et eveniet excepturi, exercitationem
                         facere

@@ -50,11 +50,7 @@ const searchArticles = createAsyncThunk<IArticle[], void>(
 const articleSlice = createSlice({
     name: 'articleSlice',
     initialState,
-    reducers: {
-        selectArticle: (state, action) => {
-            state.currentArticle = action.payload
-        }
-    },
+    reducers: {},
     extraReducers: builder =>
         builder
             .addCase(getAllArticle.fulfilled, (state, action) => {
@@ -77,11 +73,10 @@ const articleSlice = createSlice({
 
 })
 
-const {reducer: articleReducer, actions: {selectArticle}} = articleSlice
+const {reducer: articleReducer} = articleSlice
 
 const articleActions = {
     getAllArticle,
-    selectArticle,
     searchArticles
 }
 

@@ -4,6 +4,7 @@ $line-height: 1.4;
 $lines-to-show: 3;
 
 
+
 .cards {
   display: flex;
   width:400px;
@@ -14,9 +15,6 @@ $lines-to-show: 3;
   border-radius: 5px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
   box-sizing: border-box;
-  background: white;
-
-  font-family: "Montserrat";
 
   :hover{
    cursor: default;

@@ -4,30 +4,17 @@ import {useAppDispatch, useAppSelector} from "../../hooks";
 import {articleActions} from "../../redux";
 import {ArticleCard} from "../../components/ArticleCard/ArticleCard";
 import {Search} from "../../components/Search/Search";
-import {useSearchParams} from 'react-router-dom';
 
-import './style.articlepage.scss'
+import './articlePage.stylist.scss'
 
 const ArticlePage: FC = () => {
 
     const {articles, loading} = useAppSelector(state => state.articleReducer)
     const dispatch = useAppDispatch()
 
-
-    const [query, setQuery] = useSearchParams()
-
-
-    let contains = query.get('contains')
-    console.log(contains);
-
     useEffect(() => {
-        if (!contains) {
-                dispatch(articleActions.getAllArticle())
-        } else {
-            // @ts-ignore
-            dispatch(articleActions.searchArticles(contains))
-        }
-    }, [query, dispatch])
+        dispatch(articleActions.getAllArticle())
+    }, [])
 
     const countResults = articles.length
 

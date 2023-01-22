@@ -1,4 +1,4 @@
-import React, {FC, ReactNode} from 'react';
+import React, {FC, ReactNode, useState} from 'react';
 import {IArticle} from "../../interface/response.interface";
 import {useNavigate} from "react-router-dom";
 import {useAppDispatch} from "../../hooks";
@@ -16,32 +16,25 @@ interface IProps {
 
 
 const ArticleCard: FC<IProps> = ({article}) => {
-    const {title, description,publishedAt} = article
+    const {title, description,publishedAt,urlToImage} = article
 
     const navigate = useNavigate()
-    const dispatch = useAppDispatch()
-
-
 
     const toDetails = () => {
         navigate(`/details`)
-        dispatch(articleActions.selectArticle(article))
+        window.localStorage.setItem("description",JSON.stringify(article))
     }
-
-
-
 
 return (
         <div className="cards">
-
             {
-                article.urlToImage ? <img src={article.urlToImage} alt=""/> : <div className="errorPoster"><p>There isn't an image</p></div>
+                urlToImage ? <img src={urlToImage} alt={title}/> : <div className="poster"><p>There isn't an image</p></div>
             }
-
 
             <div className="text">
                 <div className="date" style={{display:"flex", alignContent:"center", color:'#363636'}}>
                     <CalendarTodayIcon style={{height:"17px"}}/>
+
                     <p style={{margin:"0 5px", height:"25px", fontSize:"14px", color: "#363636"}}>{moment(publishedAt).format("MMMM Do, YYYY")}</p>
                 </div>
                 <h3>{title}</h3>
