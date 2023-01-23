@@ -1,0 +1,5 @@
+[[redirects]]
+from = "/*"
+to = "https://newsapi.org"
+status = 200
+force = true
