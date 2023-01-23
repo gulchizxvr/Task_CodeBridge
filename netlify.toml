@@ -1,5 +1,5 @@
 [[redirects]]
 from = "/*"
-to = "https://newsapi.org/v2/"
+to = "https://newsapi.org/v2/:splat"
 status = 200
 force = true
