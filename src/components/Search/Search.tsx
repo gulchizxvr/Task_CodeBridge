@@ -1,9 +1,9 @@
-import {TextField, Button, InputAdornment, createMuiTheme, createTheme} from '@mui/material';
+import {TextField, InputAdornment} from '@mui/material';
 import React, {FC, useState} from 'react';
 import {useSearchParams} from 'react-router-dom';
 
-import {AccessAlarm, ThreeDRotation} from '@mui/icons-material';
 import SearchIcon from '@mui/icons-material/Search';
+import "./search.style.scss"
 
 
 const Search: FC = () => {
@@ -38,15 +38,13 @@ const Search: FC = () => {
 
 
     return (
-        <div className="input_text">
+        <div className="inputText">
 
-
-            <h3 style={{marginBottom:"5px", fontFamily:"Montserrat"}}>Filter by keywords</h3>
-
+            <h3 style={{marginBottom: "5px"}}>Filter by keywords</h3>
 
             <TextField
                 InputProps={{
-                    style:{fontFamily:"Montserrat",fontSize:"16px", width:"600px", height:"50px"},
+                    style:{width:"600px", height:"50px"},
                     startAdornment: (
                         <InputAdornment position={"start"}>
                             <SearchIcon/>
@@ -60,8 +58,6 @@ const Search: FC = () => {
                 onChange={changeValue}
                 onKeyDown={onKeyDown}
             />
-            {/*<Button onClick={submit}>search</Button>*/}
-
         </div>
     );
 };

@@ -1,19 +1,21 @@
-import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 
 import {articleService} from "../../service";
 import {AxiosError} from "axios";
-import {IArticle} from "../../interface/response.interface";
+import {IArticle, IArticles} from "../../interface";
 
 interface IState {
     articles: IArticle[]
     currentArticle: IArticle | null
-    loading: boolean
+    loading: boolean,
+    error: string | null
 }
 
 const initialState: IState = {
     articles: [],
     currentArticle: null,
-    loading: false
+    loading: false,
+    error: null
 }
 
 
@@ -21,11 +23,9 @@ const getAllArticle = createAsyncThunk<IArticle[], void>(
     'articleSlice/getAll',
     async (_, {rejectWithValue}) => {
         try {
-            const {data} = await articleService.getAllArticle()
-            console.log(data);
-            const directory = data.articles
-            console.log(directory);
-            return directory
+            const {data} : {data:IArticles} = await articleService.getAllArticle()
+            return data.articles
+
         } catch (e) {
             const err = e as AxiosError
             return rejectWithValue(err.response?.data)
@@ -33,9 +33,9 @@ const getAllArticle = createAsyncThunk<IArticle[], void>(
     }
 )
 
-const searchArticles = createAsyncThunk<IArticle[], void>(
+const searchArticles = createAsyncThunk<IArticle[], string>(
     'articleSlice/searchArticles',
-    async (value, {rejectWithValue}) => {
+    async (value:string, {rejectWithValue}) => {
         try {
             const {data} = await articleService.searchArticles(value)
             return data.articles
@@ -60,6 +60,9 @@ const articleSlice = createSlice({
             .addCase(getAllArticle.pending, (state) => {
                 state.loading = true
             })
+            .addCase(getAllArticle.rejected, (state, action)=>{
+                state.error = action.payload as string
+            })
 
 
 
@@ -69,6 +72,9 @@ const articleSlice = createSlice({
             })
             .addCase(searchArticles.pending, (state) => {
                 state.loading = true
+            })
+            .addCase(searchArticles.rejected, (state, action)=>{
+                state.error = action.payload as string
             })
 
 })

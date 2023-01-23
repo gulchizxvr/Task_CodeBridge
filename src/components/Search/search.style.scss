@@ -1,9 +1,7 @@
+.MuiTextField-root {
+  border: 1px solid #E5E5E5;
+  border-radius: 5px;
+  box-sizing: border-box;
 
-$font-size: 18px;
-$line-height: 1.4;
-$lines-to-show: 3;
-$font-family: "Montserrat";
-
-.input_text {
-  font-family: $font-family;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
 }
