@@ -1,5 +1,8 @@
 [[redirects]]
 from = "/*"
-to = "https://newsapi.org/v2/:splat"
+to = "/index.html"
 status = 200
-force = true
+[[headers]]
+for = "/"
+[headers.values]
+Access-Control_Allow_Origin="*"
