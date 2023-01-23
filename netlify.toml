@@ -6,4 +6,4 @@ status = 200
 for = "/"
 [headers.values]
 Access-Control_Allow_Origin="*"
-Authorization="54c8e5fa4d104f2f9ea178a688c8f6ea"
+Authorization="Bearer 54c8e5fa4d104f2f9ea178a688c8f6ea"
